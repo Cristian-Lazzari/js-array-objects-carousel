@@ -32,7 +32,7 @@ let counter = 0
 render();
 
 eleBtnDown.addEventListener("click",
-    function(){
+    function up(){
         counter++;
         if(counter == 5){
             counter = 0
@@ -40,14 +40,8 @@ eleBtnDown.addEventListener("click",
         render();
 
 })
-eleBtnUp.addEventListener("click",
-    function(){
-        counter--;
-        if(counter == -1){
-            counter = 4
-        }
-        render();
-})
+eleBtnUp.addEventListener("click", down)
+setInterval(down,3000)
 //FUNCTION
 function render(){
     eleCont.innerHTML = '';
@@ -68,4 +62,11 @@ function render(){
         }
     
     }
+}
+function down(){
+    counter--;
+    if(counter == -1){
+        counter = 4
+    }
+    render();
 }
