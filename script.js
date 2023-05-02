@@ -24,25 +24,48 @@ const images = [
 //SELEZIONI
 const eleCont = document.querySelector(".img-container");
 const elePreview = document.querySelector(".preview");
-const eleBtnUp = document.querySelector(".btn.up");
-const eleBtnDown = document.querySelector(".btn.down");
-let counter = 4
+const eleBtnUp = document.querySelector(".btn-up");
+const eleBtnDown = document.querySelector(".btn-down");
+let counter = 0
 
 //RENDER
-for(let i = 0; i < images.length; i++){
-    if(counter == i){
-        eleCont.innerHTML += `<div class="current-img" style="background-image: url('${images[i].image}')">
-        <h3 class="titolo">${images[i].title}</h3>
-        <p class="paragrafo">${images[i].text}</p>
-        </div>`
-        elePreview.innerHTML += `<div style="background-image: url('${images[i].image}');" class="img-miniature  img-active"></div>`;
-    }else{
-        eleCont.innerHTML += `<div class="current-img hidden" style="background-image: url('${images[i].image}')">
-        <h3 class="titolo">${images[i].title}</h3>
-        <p class="paragrafo">${images[i].text}</p>
-        </div>`
-        elePreview.innerHTML += `<div style="background-image: url('${images[i].image}');" class="img-miniature"></div>`
+render();
+
+eleBtnDown.addEventListener("click",
+    function(){
+        counter++;
+        if(counter == 5){
+            counter = 0
+        }
+        render();
+
+})
+eleBtnUp.addEventListener("click",
+    function(){
+        counter--;
+        if(counter == -1){
+            counter = 4
+        }
+        render();
+})
+//FUNCTION
+function render(){
+    eleCont.innerHTML = '';
+    elePreview.innerHTML = '';
+    for(let i = 0; i < images.length; i++){
+        if(counter == i){
+            eleCont.innerHTML += `<div class="current-img" style="background-image: url('${images[i].image}')">
+            <h3 class="titolo">${images[i].title}</h3>
+            <p class="paragrafo">${images[i].text}</p>
+            </div>`
+            elePreview.innerHTML += `<div style="background-image: url('${images[i].image}');" class="img-miniature  img-active"></div>`;
+        }else{
+            eleCont.innerHTML += `<div class="current-img hidden" style="background-image: url('${images[i].image}')">
+            <h3 class="titolo">${images[i].title}</h3>
+            <p class="paragrafo">${images[i].text}</p>
+            </div>`
+            elePreview.innerHTML += `<div style="background-image: url('${images[i].image}');" class="img-miniature"></div>`
+        }
+    
     }
-
 }
-
