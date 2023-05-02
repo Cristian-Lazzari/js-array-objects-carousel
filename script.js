@@ -26,22 +26,22 @@ const eleCont = document.querySelector(".img-container");
 const elePreview = document.querySelector(".preview");
 const eleBtnUp = document.querySelector(".btn-up");
 const eleBtnDown = document.querySelector(".btn-down");
+const eleBtnLeft = document.querySelector(".btn-right");
 let counter = 0
 
 //RENDER
 render();
 
-eleBtnDown.addEventListener("click",
-    function up(){
-        counter++;
-        if(counter == 5){
-            counter = 0
-        }
-        render();
-
-})
+eleBtnDown.addEventListener("click", up)
 eleBtnUp.addEventListener("click", down)
-setInterval(down,3000)
+let auto = setInterval(up,3000)
+
+eleBtnLeft.addEventListener("click", bonus)
+
+
+
+
+
 //FUNCTION
 function render(){
     eleCont.innerHTML = '';
@@ -69,4 +69,16 @@ function down(){
         counter = 4
     }
     render();
+}
+function up(){
+    counter++;
+    if(counter == 5){
+        counter = 0
+    }
+    render();
+}
+function bonus(){
+    clearInterval(auto);
+    // let newauto =setInterval(down,1000);
+    // newauto;
 }
